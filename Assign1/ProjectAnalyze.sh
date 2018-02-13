@@ -1,5 +1,5 @@
 #!/bin/bash
 
-git pull
+git status -uno
 
 git status>changes.log
