@@ -1,5 +1,7 @@
 #!/bin/bash
 
-git status -uno
+
 
 git status>changes.log
+
+grep -r "#TODO">todo.log . --exclude "todo.log" --exclude "ProjectAnalyze.sh"
