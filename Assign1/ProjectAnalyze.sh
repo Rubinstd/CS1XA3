@@ -23,15 +23,28 @@ git log | grep "$1" -B 4 -A 1 > search.log
 
 }
 
-check_uptodate
-check_uncommited
-create_todo_list
-check_haskell_errors
+search_log_author(){
+
+git log | grep "Author: $1" -B 2 -A 3 > search.log
+
+}
+
+if [ $# -eq 0 ]
+then
+	check_uptodate
+	check_uncommited
+	create_todo_list
+	check_haskell_errors
+fi
 
 if [ $# -eq 2  ]
 then
 	if [ "$1" = "sl" ]
 	then
 		search_log $2
+	fi
+	if [ "$1" = "sla" ]
+	then
+		search_log_author $2
 	fi
 fi
