@@ -1,12 +1,11 @@
 #!/bin/bash
 
 check_uptodate(){
-git fetch
-git diff master origin/master
+git status > tmpstatus.txt
 }
 
 check_uncommited(){
-git diff --exclude "changes.log" >changes.log
+git diff HEAD --exclude "changes.log" >changes.log
 }
 
 create_todo_list(){
@@ -17,18 +16,18 @@ check_haskell_errors(){
 
 #find . -name "*.hs" -type f | grep "main" | -ghc -fno-code >error.log
 
-#find . -name "*.hs" | while read line; do
-#	maincount=$(grep "main" "$line" | wc -l)
-#	echo $(grep -Fxq "main" "$line")
-#	if grep -Fxq "main" "$line"
-#	then
-#		echo "No"
-#	else
-#		#ghc -fno-code "$line"
-#		echo "Yes"
-#	fi
+echo "" > error.log
+
+find . -name "*.hs" | while read line; do
+	echo "Errors for $line :" >> error.log
+	maincount=$(grep "main" "$line" | wc -l)
+	if [ $maincount -eq 0 ]
+	then
+		echo "main = undefined">>$line
+	fi
+	ghc -fno-code "$line" 1>/dev/null 2>>error.log
 		
-#done
+done
 
 }
 
