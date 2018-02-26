@@ -6,15 +6,30 @@ git diff master origin/master
 }
 
 check_uncommited(){
-git diff>changes.log
+git diff --exclude "changes.log" >changes.log
 }
 
 create_todo_list(){
-grep -r "#TODO">todo.log . --exclude "todo.log" --exclude "ProjectAnalyze.sh"
+grep -r "#TODO" . --exclude={todo.log,ProjectAnalyze.sh,changes.log}>todo.log
 }
 
 check_haskell_errors(){
-find -name "*.hs" -exec ghc -fno-code {} \;&>error.log
+
+#find . -name "*.hs" -type f | grep "main" | -ghc -fno-code >error.log
+
+#find . -name "*.hs" | while read line; do
+#	maincount=$(grep "main" "$line" | wc -l)
+#	echo $(grep -Fxq "main" "$line")
+#	if grep -Fxq "main" "$line"
+#	then
+#		echo "No"
+#	else
+#		#ghc -fno-code "$line"
+#		echo "Yes"
+#	fi
+		
+#done
+
 }
 
 search_log(){
