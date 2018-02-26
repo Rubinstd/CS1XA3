@@ -12,4 +12,9 @@ Custom Features:
    into a file called search.log.
 2. Sometimes you're working on these projects in a group. Now you're obviously a pro programmer who never messes things up, but unfortunately I can't say the same for your buddies.
    By using the two arguments sla "authorname" (sla standing for search log by author), the script will place only the commits whose authors are the given name into the search.log file
-   that way you can check what those pesky peers of yours have done to your beautiful code. 
+   that way you can check what those pesky peers of yours have done to your beautiful code.
+3. This is a custom function embedded into my haskell error checking function. Instead of just blindly checking for haskell errors, I first check to see if the hs file has a main function. 
+   If it does not, I add in a line at the end of the file with an undefined main. This allows the error checker to then continue to check the rest of the code for any errors. 
+   I also made sure that the stdout (which is normally just a couple of lines that say that the file has compiled the main) aren't printed while the script runs or in the error.log as I 
+   found them quite useless. Only the stderr (the actual error messages) are sent to error.log. Lastly I made sure that there is a header for each hs file indicating it's directory to show 
+   that the error messages after said line are for the given files.
