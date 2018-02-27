@@ -2,7 +2,7 @@
 
 #Uses git status to check if the local repo is up to date with the remote repo.
 check_uptodate(){
-git status > tmpstatus.txt #Don't forget to take out the writing thing
+git status
 }
 
 #Checks for all uncommited changes and puts them into changes.log. 
