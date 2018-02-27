@@ -24,3 +24,5 @@ Custom Features:
    simply a function I added because programmers are lazy and typing out a whole grep statement can be tedious.
 6. Added a built in search for files with a search string in the name when you give the script the inputs sdf "filename". This search is not case sensitive and returns all files (and their
    directories). This function is useful because typing out the whole find statement can be tedious and programmers are lazy.
+7. Added a custom feature that sets up a new directory when the script is given the extra parameters sdir "directoryname" (sdir standing for setup directory). This new directory has a 
+   README.md file in it by default with the date it was created. 

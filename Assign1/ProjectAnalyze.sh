@@ -63,12 +63,18 @@ git log | grep "Author: $1" -B 2 -A 3 > search.log
 
 #Searches recursively through all files in all directories (assuming the script is in the root directory) for a given string.
 search_dir_string(){
-grep -r "$1" 
+grep -r "$1" --exclude={todo.log,ProjectAnalyze.sh,search.log,error_python.log,error.log,changes.log} 
 }
 
 #Searches through all files in the directory (assuming the script is in the root directory) for files with a given search string in the name (this is not case sensitive)
 search_dir_file(){
 find -iname "*$1*"
+}
+
+#Sets up a new directory with a given name and a README.md file with the date the directory was created on it.
+setup_dir(){
+mkdir "$1" 
+echo "Read me created on " `date +%Y-%m-%d` >$1/README.md
 }
 
 #Runs all the standard check functions that you would naturally want to run if you were using the script just to analyze various aspects of your git repo.
@@ -86,17 +92,20 @@ elif [ $# -eq 2  ]
 then
 	if [ "$1" = "sl" ]
 	then
-		search_log $2
+		search_log "$2"
 	
 	elif [ "$1" = "sla" ]
 	then
-		search_log_author $2
+		search_log_author "$2"
 	elif [ "$1" = "sds" ]
 	then
-		search_dir_string $2
+		search_dir_string "$2"
 	elif [ "$1" = sdf ]
 	then
-		search_dir_file $2
+		search_dir_file "$2"
+	elif [ "$1" = sdir ]
+	then
+		setup_dir "$2"
 	else
 		echo "Invalid inputs"
 	fi
