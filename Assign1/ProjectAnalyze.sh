@@ -8,7 +8,7 @@ git status
 #Checks for all uncommited changes and puts them into changes.log. 
 #This function overwrites any previous info in changes.log to reduce clutter.
 check_uncommited(){
-git diff HEAD --exclude "changes.log" >changes.log
+git diff HEAD -- . ':(exclude)changes.log' >changes.log
 }
 
 #Greps the entire git repository (assuming the script is at the root) and puts all lines with #TODO into a todo.log.
