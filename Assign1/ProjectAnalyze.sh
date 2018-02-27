@@ -77,6 +77,11 @@ mkdir "$1"
 echo "Read me created on " `date +%Y-%m-%d` >$1/README.md
 }
 
+#Zips a given directory to your home directory. Useful for if you wanna only zip specific directories or files and move them somewhere for testing.
+zip_backup(){
+zip -r "$1".zip "$1"
+}
+
 #Runs all the standard check functions that you would naturally want to run if you were using the script just to analyze various aspects of your git repo.
 if [ $# -eq 0 ]
 then
@@ -100,12 +105,15 @@ then
 	elif [ "$1" = "sds" ]
 	then
 		search_dir_string "$2"
-	elif [ "$1" = sdf ]
+	elif [ "$1" = "sdf" ]
 	then
 		search_dir_file "$2"
-	elif [ "$1" = sdir ]
+	elif [ "$1" = "sdir" ]
 	then
 		setup_dir "$2"
+	elif [ "$1" = "zb" ]
+	then
+		zip_backup "$2"
 	else
 		echo "Invalid inputs"
 	fi

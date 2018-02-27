@@ -25,4 +25,6 @@ Custom Features:
 6. Added a built in search for files with a search string in the name when you give the script the inputs sdf "filename". This search is not case sensitive and returns all files (and their
    directories). This function is useful because typing out the whole find statement can be tedious and programmers are lazy.
 7. Added a custom feature that sets up a new directory when the script is given the extra parameters sdir "directoryname" (sdir standing for setup directory). This new directory has a 
-   README.md file in it by default with the date it was created. 
+   README.md file in it by default with the date it was created.
+8. Added a custom feature that zips a desired directory and all files/directories in it to your current directory under the name of the file.zip. This is called by giving the extra parameters zb
+   "zipname" (zb standing for zip backup). 
