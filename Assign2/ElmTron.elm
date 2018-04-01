@@ -86,37 +86,40 @@ subscriptions model =
 
 view : Model -> Html.Html Msg
 view model = let
-      bg = rect [x "0",y "0", width (toString boardDimension), height (toString boardDimension), rx "1", ry "1", fill "black"][]
-      sb = [rect [x "700",y "0", width "300", height "200", rx "1", ry "1", fill "darkslategrey"] [],
-            rect [x "700",y "200", width "300", height "500", rx "1", ry "1", fill "dimgrey"] [],
+      bg = rect [x "0",y "0", width (toString boardDimension), height (toString boardDimension), rx "0", ry "0", fill "black"][]
+      sb = [rect [x "700",y "0", width "300", height "200", rx "0", ry "0", fill "darkslategrey"] [],
+            rect [x "700",y "200", width "300", height "500", rx "0", ry "0", fill "dimgrey"] [],
             text_ [x "850", y "30", fill "darkturquoise", fontFamily "Impact",textAnchor "middle",fontSize "20"] [text "Scores:"],
             text_ [x "850", y "230", fill "darkturquoise", fontFamily "Impact",textAnchor "middle",fontSize "20"] [text "Rules:"],
             text_ [x "850", y "260", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Drive your bike around!"],
             text_ [x "850", y "290", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Careful! Don't collide with:"],
             text_ [x "850", y "320", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Walls"],
             text_ [x "850", y "350", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Your tail"],
-            text_ [x "850", y "380", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Or the enemies tail!"],
+            text_ [x "850", y "380", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Or the enemies tail"],
             text_ [x "850", y "410", fill "darkturquoise", fontFamily "Impact",textAnchor "middle",fontSize "20"] [text "Controls:"],
             text_ [x "850", y "440", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Player 1 (red) moves with W,A,S,D"],
             text_ [x "850", y "470", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Player 2 (blue) moves with Arrow Keys"],
             text_ [x "850", y "500", fill "white", fontFamily "Arial",textAnchor "middle"] [text "Hit R to reset the Game"]]
       content = case model of
-          GameOff -> [text_ [x "350", y "325", fill "darkturquoise", fontFamily "Impact",textAnchor "middle",fontSize "60"] [text "Welcome to Elm Tron"],
-                      text_ [x "350", y "375", fill "darkturquoise", fontFamily "Impact",textAnchor "middle",fontSize "40"] [text "Press Space Bar To Start The Game!"],
+          GameOff -> [text_ [x "350", y "325", fill "lightgrey", fontFamily "Impact",textAnchor "middle",fontSize "60"] [text "Welcome to ElmTron"],
+                      text_ [x "353", y "325", fill "darkturquoise", fontFamily "Impact",textAnchor "middle",fontSize "60"] [text "Welcome to ElmTron"],
+                      text_ [x "350", y "375", fill "lightgrey", fontFamily "Impact",textAnchor "middle",fontSize "40"] [text "Press Space Bar To Start The Game!"],
+                      text_ [x "353", y "375", fill "darkturquoise", fontFamily "Impact",textAnchor "middle",fontSize "40"] [text "Press Space Bar To Start The Game!"],
                       text_ [x "850", y "60", fill "white", fontFamily "Arial",textAnchor "middle"] [text ("Player 1 - 0")],
                       text_ [x "850", y "90", fill "white", fontFamily "Arial",textAnchor "middle"] [text ("Player 2 - 0")]]
-          GamePause bike1 bike2 -> [text_ [x "810", y "60", fill "white", fontFamily "Arial"] [text ("Player 1 - " ++ (toString bike1.score))],
-                                    text_ [x "810", y "90", fill "white", fontFamily "Arial"] [text ("Player 2 - " ++ (toString bike2.score))],
-                                    text_ [x "350", y "350", fill "darkturquoise", fontFamily "Impact", textAnchor "middle",fontSize "40"] [text "Press Space Bar to start the next round!"]]
+          GamePause bike1 bike2 -> [text_ [x "850", y "60", fill "white", fontFamily "Arial",textAnchor "middle"] [text ("Player 1 - " ++ (toString bike1.score))],
+                                    text_ [x "850", y "90", fill "white", fontFamily "Arial",textAnchor "middle"] [text ("Player 2 - " ++ (toString bike2.score))],
+                                    text_ [x "350", y "350", fill "lightgrey", fontFamily "Impact", textAnchor "middle",fontSize "40"] [text "Press Space Bar to start the next round!"],
+                                    text_ [x "353", y "350", fill "darkturquoise", fontFamily "Impact", textAnchor "middle",fontSize "40"] [text "Press Space Bar to start the next round!"]]
           GameOn bike1 bike2 ->  let
-                sb = [text_ [x "850", y "60", fill "white", fontFamily "Impact",textAnchor "middle"] [text ("Player 1 - " ++ (toString bike1.score))],
-                      text_ [x "850", y "90", fill "white", fontFamily "Impact",textAnchor "middle"] [text ("Player 2 - " ++ (toString bike2.score))]]
+                sb = [text_ [x "850", y "60", fill "white", fontFamily "Arial",textAnchor "middle"] [text ("Player 1 - " ++ (toString bike1.score))],
+                      text_ [x "850", y "90", fill "white", fontFamily "Arial",textAnchor "middle"] [text ("Player 2 - " ++ (toString bike2.score))]]
                 head1 = rect [x (toString (Tuple.first bike1.head)),
                              y (toString (Tuple.second bike1.head)),
                              width (toString bikeDimension),
                              height (toString bikeDimension),
-                             rx "1",
-                             ry "1",
+                             rx "0",
+                             ry "0",
                              fill "red"] []
                 tail1 = List.map (\ coord -> (rect [ x (toString (Tuple.first coord)),
                                                     y (toString (Tuple.second coord)),
@@ -127,8 +130,8 @@ view model = let
                              y (toString (Tuple.second bike2.head)),
                              width (toString bikeDimension),
                              height (toString bikeDimension),
-                             rx "1",
-                             ry "1",
+                             rx "0",
+                             ry "0",
                              fill "blue"] []
                 tail2 = List.map (\ coord -> (rect [ x (toString (Tuple.first coord)),
                                                     y (toString (Tuple.second coord)),
