@@ -9,3 +9,5 @@ This is my haskell math library. It is able to take an evaluate, simplify, parti
 [My method of quickCheck was graciously provided by Sam whose github can be found here](https://github.com/cymbalus/CS1XA3)
 
 Included with my files is haddock documentation for all of the features within the files (along with additional information to be found within the actual code itself).
+
+[docs] (docs/index.html)
